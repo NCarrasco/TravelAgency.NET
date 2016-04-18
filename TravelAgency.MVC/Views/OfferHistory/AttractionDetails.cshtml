@@ -1,0 +1,96 @@
+﻿@model TravelAgency.DAL.DAL.tKlienciAtrakcjeHistoria
+
+@{
+    ViewBag.Title = "AttractionDetails";
+}
+
+<h2>Attraction Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tAtrakcjeHistoria.Nazwa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tAtrakcjeHistoria.Nazwa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tAtrakcjeHistoria.iLiczbaOsob)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tAtrakcjeHistoria.iLiczbaOsob)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tAtrakcjeHistoria.mCena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tAtrakcjeHistoria.mCena)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tAtrakcjeHistoria.Opis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tAtrakcjeHistoria.Opis)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tKlient.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tKlient.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tOsoby.Imie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tOsoby.Imie)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.tOsoby.Nazwisko)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tOsoby.Nazwisko)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SposobZaplaty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SposobZaplatyText)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataZaplaty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataZaplaty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ZaplaconaKwota)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ZaplaconaKwota)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Details", new { id = Model.tAtrakcjeHistoria.IDOferty })
+</p>

@@ -1,0 +1,147 @@
+﻿@model TravelAgency.DAL.DAL.tOferta
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Offers</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @Html.HiddenFor(model => model.IDOferty)
+        <dt>
+            @Html.DisplayNameFor(model => model.tPanstwa.NazwaPanstwa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tPanstwa.NazwaPanstwa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bWyjazd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bWyjazd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mCena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mCena)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.iLiczbaOsob)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.iLiczbaOsob)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Miasto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Miasto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MiejsceWyjazdu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MiejsceWyjazdu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LiczbaDniTrwania)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LiczbaDniTrwania)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataWyjazdu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataWyjazdu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Opis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Opis)
+        </dd>
+
+    </dl>
+    @if (!ViewBag.IsReserved)
+    {
+        @Html.ActionLink("Reserve", "Reserve", new { id = Model.IDOferty })
+    }
+    else
+    {
+        <label>Offer is reserved.</label>;
+    }
+</div>
+
+@if (Model.tAtrakcjeUslugi.Count() > 0)
+{
+    <div>
+        <h4>Attractions</h4>
+        <table class="table">
+            <tr>
+                <th>
+                    @TravelAgency.DAL.Util.Strings.Name
+                </th>
+                <th>
+                    @TravelAgency.DAL.Util.Strings.PersonCount
+                </th>
+                <th>
+                    @TravelAgency.DAL.Util.Strings.Price
+                </th>
+                <th>
+                    @TravelAgency.DAL.Util.Strings.Description
+                </th>
+                <th>
+                    @TravelAgency.DAL.Util.Strings.Buttons
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.tAtrakcjeUslugi)
+            {
+                <tr @Html.Raw(ViewBag.AttractionReserved.IsReserved(item.IDAtrakcjiUslugi) ? "class=\"attraction-reserved\"" : "")>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nazwa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.iLiczbaOsob)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.mCena)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Opis)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", "Attractions", new { id = item.IDAtrakcjiUslugi }, new { })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+}
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

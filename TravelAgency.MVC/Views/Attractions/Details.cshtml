@@ -1,0 +1,69 @@
+﻿@model TravelAgency.DAL.DAL.tAtrakcjeUslugi
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Attractions and Services</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tOferta.Miasto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tOferta.Miasto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nazwa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nazwa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.iLiczbaOsob)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.iLiczbaOsob)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mCena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mCena)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Opis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Opis)
+        </dd>
+
+    </dl>
+</div>
+@if (!ViewBag.CanReserve)
+{
+    <label>Attraction cannot be reserved since offer is not reserved.</label>
+}
+else if (!ViewBag.IsReserved)
+{
+    @Html.ActionLink("Reserve", "Reserve", new { id = Model.IDAtrakcjiUslugi })
+}
+else
+{
+    <label>Attraction is reserved.</label>;
+}
+<p>
+    @Html.ActionLink("Back to List", "Details", "Offers", new { id = Model.IDOferty }, new { })
+</p>

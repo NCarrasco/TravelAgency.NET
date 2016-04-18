@@ -1,0 +1,89 @@
+﻿@model TravelAgency.DAL.DAL.tOsoby
+
+@{
+    ViewBag.Title = "EditPerson";
+}
+
+<h2>Edit Person</h2>
+<label class="text-danger">@ViewBag.ErrorMessage</label>
+<label class="text-info">@ViewBag.Message</label>
+@using (Html.BeginForm("EditPerson", "Account", new { id = Model.IDKlienta }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.IDOsoby)
+        @Html.HiddenFor(model => model.IDKlienta)
+        @Html.HiddenFor(model => model.IDAdresu)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Imie, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Imie, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Imie, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nazwisko, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nazwisko, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nazwisko, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.bPracownik)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NIP, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NIP, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NIP, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+       @Html.Partial("_AddressEditionPartial", Model)
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Old Password</label>
+            <div class="col-md-10">
+                <input class="form-control" id="OldPassword" name="OldPassword" type="password" />
+                <span class=" text-danger">
+                    @ViewBag.OldPasswordError
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">New Password</label>
+            <div class="col-md-10">
+                <input class="form-control" id="NewPassword" name="NewPassword" type="password" />
+                <span class=" text-danger">
+                    @ViewBag.NewPasswordError
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Confirm New Password</label>
+            <div class="col-md-10">
+                <input class="form-control" id="NewPassword2" name="NewPassword2" type="password" />
+                <span class="text-danger">
+                    @ViewBag.NewPassword2Error
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+
+<div>
+    @Html.ActionLink("Go to Home", "Index", "Home")
+</div>

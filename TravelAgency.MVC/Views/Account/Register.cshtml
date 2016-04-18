@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Register</h2>
+@using (Ajax.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, new AjaxOptions
+{
+    HttpMethod = "Get",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "registerForm"
+}, new { id = "RegsitrationTypeForm" }))
+{
+    <label>Select user type:</label>
+    @Html.DropDownList("userType", null, null, new { onchange = "$('#RegsitrationTypeForm').trigger('submit');" })
+    <input type="submit" id="userTypeSubmit" value="Accept" style="visibility:hidden" />
+}
+
+<div id="registerForm">
+
+    @if (ViewBag.UserPartialViewName != null)
+    {
+        @Html.Partial((String)ViewBag.UserPartialViewName, (RegistrationModel)Model)
+    }
+</div>

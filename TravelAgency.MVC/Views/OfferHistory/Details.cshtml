@@ -1,0 +1,171 @@
+﻿@model TravelAgency.MVC.ViewModels.OfferHistoryDetails
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tKlienciOfertyHistoria</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => Model.History.tHistoriaOfert.tPanstwa.NazwaPanstwa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => Model.History.tHistoriaOfert.tPanstwa.NazwaPanstwa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => Model.History.tHistoriaOfert.mCena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => Model.History.tHistoriaOfert.mCena)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => Model.History.tHistoriaOfert.DataWyjazdu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => Model.History.tHistoriaOfert.DataWyjazdu)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => Model.History.tHistoriaOfert.LiczbaDniTrwania)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => Model.History.tHistoriaOfert.LiczbaDniTrwania)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => Model.History.tHistoriaOfert.iLiczbaOsob)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => Model.History.tHistoriaOfert.iLiczbaOsob)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => Model.History.tHistoriaOfert.Opis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => Model.History.tHistoriaOfert.Opis)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => Model.History.tHistoriaOfert.Miasto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => Model.History.tHistoriaOfert.Miasto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => Model.History.tOsoby.Imie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => Model.History.tOsoby.Imie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => Model.History.tKlient.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => Model.History.tKlient.email)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => Model.History.SposobZaplaty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => Model.History.SposobZaplatyText)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => Model.History.DataZaplaty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => Model.History.DataZaplaty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => Model.History.ZaplaconaKwota)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => Model.History.ZaplaconaKwota)
+        </dd>
+
+    </dl>
+</div>
+
+@if (Model.Attractions.Count() > 0)
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => Model.Attractions.First().DataZaplaty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => Model.Attractions.First().SposobZaplaty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => Model.Attractions.First().ZaplaconaKwota)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => Model.Attractions.First().tOsoby.Imie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => Model.Attractions.First().tOsoby.Nazwisko)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => Model.Attractions.First().tAtrakcjeHistoria.Nazwa)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Attractions)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataZaplaty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SposobZaplatyText)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ZaplaconaKwota)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tOsoby.Imie)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tOsoby.Nazwisko)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tAtrakcjeHistoria.Nazwa)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "AttractionDetails", new { id = item.IDAtrakcjiUslugi })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+}
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

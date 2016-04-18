@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Travel Agency";
+}
+
+
+<div class="row">
+    
+    <div class="col-md-4">
+        <h2>Offers</h2>
+        <p>List of events we offer can be find by selecting the below link.</p>
+        <p>@Html.ActionLink("Offer List", "Index", "Offers")</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Travel Agency</h2>
+        <p>
+            We offer trips to the country and abroad. Our prices are competitive. We provide a high level of service.
+        </p>
+        <p>@Html.ActionLink("Contact us", "Contact", "Home")</p>
+    </div>
+    @if (User.Identity.IsAuthenticated) { 
+    <div class="col-md-4">
+        <h2>Logged in</h2>
+        <p>You are logged as: @Html.Raw(User.Identity.Name)</p>
+        <p>@Html.ActionLink("Log out", "Logout", "Account")</p>
+    </div>
+    }
+    else
+    {
+        <div class="col-md-4">
+            <h2>Logged out</h2>
+            <p>You are currently logged out. To log in or register select the below link.</p>
+            <p>@Html.ActionLink("Login or register", "Login", "Account")</p>
+        </div>
+    }
+</div>

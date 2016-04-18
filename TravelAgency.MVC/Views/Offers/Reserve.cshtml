@@ -1,0 +1,64 @@
+﻿@model TravelAgency.MVC.ViewModels.ReservationModel
+@{
+    ViewBag.Title = "Reserve";
+}
+
+<h2>Reserve</h2>
+
+@if (ViewBag.ReserveMessage == null)
+{
+    <label>Do you want to reserve the offer:</label>
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <dl class="dl-horizontal">
+        @Html.HiddenFor(model => model.Offer.IDOferty)
+        @Html.HiddenFor(model => model.PersonId)
+        <dt>
+            @Html.DisplayNameFor(model => model.Offer.tPanstwa.NazwaPanstwa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Offer.tPanstwa.NazwaPanstwa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Offer.Miasto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Offer.Miasto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Offer.MiejsceWyjazdu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Offer.MiejsceWyjazdu)
+        </dd>
+
+        <dd>
+            @Html.DisplayFor(model => model.Offer.DataWyjazdu)
+        </dd>
+    </dl>
+    if (ViewBag.IsReserved)
+    { 
+        <label>Offer is reserved.</label>
+    }
+    else if (ViewBag.ReserveMessage == null)
+    {
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Reserve" class="btn btn-default" />
+            </div>
+        </div>
+    }
+    else
+    {
+        <label class="text-success">@ViewBag.ReserveMessage</label>
+    }
+}
+

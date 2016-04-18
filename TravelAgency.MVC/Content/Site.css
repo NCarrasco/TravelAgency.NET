@@ -1,0 +1,155 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #6cb5e3;
+    color:#111;
+}
+
+
+.form-control{
+    color:#111;
+}
+
+a {
+    color: #3a36ff;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-top: 25px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+tr.offer-reserved, tr.attraction-reserved {
+    background-color: lightcyan;
+}
+
+div.wrapper {
+    overflow: auto;
+}
+
+div.c1 {
+    float: left;
+}
+
+div.c2 {
+    float: right;
+    padding-top: 15px;
+}
+
+div.container {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.body-content {
+    margin: 0px;
+    padding: 0px;
+}
+
+
+div.navbar-inverse {
+    background-color: #6cb5e3;
+    border-bottom-color: gray;
+    border-bottom-width: 1px;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #111;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #111;
+}
+
+.navbar-inverse .navbar-text {
+    color: #111;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #111;
+}
+
+
+div.body-image{
+    background-image: url('images/BodyContent.png');
+    background-repeat: no-repeat;
+    margin: 0px;
+    padding: 0px;
+}
+
+div.trasparent-panel{
+    padding:0px 10px 0px 10px;
+    background-image: url('images/ContentGradient.png');
+    background-repeat: repeat-x;
+    background-color: #7db5d8;
+    opacity: 0.7;
+    filter: alpha(opacity=70); /* For IE8 and earlier */
+    border-style: solid;
+    border-color: gray;
+    border-width: 0px 1px 0px 1px;
+}
+.content-table {
+    width: 100%;
+    height:100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+html, body, .body-image, .trasparent-panel
+{
+  height: 100%;
+}
+
+.body-content{
+    min-height: 85%;
+}
+
+.center-column {
+    background-image: url('images/ContentGradient.png');
+    background-repeat: repeat-x;
+    background-color: #6da9d0;
+    width:900px;
+    height:100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.left-column {
+    background-image: url('images/MarginLeft.png');
+    background-repeat: no-repeat;
+    background-position: right 0px top;
+    height:100%;
+}
+
+.right-column {
+    background-image: url('images/MarginRight.png');
+    background-repeat: no-repeat;
+    height:100%;
+}
+
+footer > p{
+    margin:0px;
+    padding:15px;
+}
+.login-bar > a,.login-bar> .text-info {
+    color:#111;
+}

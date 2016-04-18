@@ -1,0 +1,74 @@
+﻿@model TravelAgency.MVC.ViewModels.ReservationModel
+@{
+    ViewBag.Title = "Reserve Attraction";
+}
+
+<h2>Reserve Attraction</h2>
+@if (ViewBag.ReserveMessage == null)
+{
+    <label>Do you want to reserve the attraction:</label>
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <dl class="dl-horizontal">
+        @Html.HiddenFor(model => model.Attraction.IDOferty)
+        @Html.HiddenFor(model => model.Attraction.Nazwa)
+        @Html.HiddenFor(model => model.Attraction.iLiczbaOsob)
+        @Html.HiddenFor(model => model.Attraction.mCena)
+        @Html.HiddenFor(model => model.Attraction.Opis)
+        @Html.HiddenFor(model => model.Attraction.IDAtrakcjiUslugi)
+        @Html.HiddenFor(model => model.PersonId)
+        <dt>
+            @Html.DisplayNameFor(model => model.Attraction.Nazwa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Attraction.Nazwa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Attraction.iLiczbaOsob)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Attraction.iLiczbaOsob)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Attraction.mCena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Attraction.mCena)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Attraction.Opis)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Attraction.Opis)
+        </dd>
+    </dl>
+    if (!ViewBag.CanReserve)
+    {
+        <label>Attraction cannot be reserved since offer is not reserved.</label>
+    }
+    else if (ViewBag.IsReserved)
+    {
+        <label>Attraction is reserved.</label>
+    }
+    else if (ViewBag.ReserveMessage == null)
+    {
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Reserve" class="btn btn-default" />
+            </div>
+        </div>
+    }
+    else
+    {
+        <label class="text-success">@ViewBag.ReserveMessage</label>
+    }
+}

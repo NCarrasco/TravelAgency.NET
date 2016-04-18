@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Travel Agency", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="wrapper">
+                <div class="navbar-collapse collapse c1">
+                    <ul class="nav navbar-nav">
+                        @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
+                        <li>@Html.ActionLink("Offers", "Index", "Offers")</li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>@Html.ActionLink("Offer History", "Index", "OfferHistory")</li>
+                        }
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                </div>
+                <div class="c2 login-bar">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <label class="text-info">Logged as: </label>
+                        String userName = User.Identity.Name;
+                        @Html.ActionLink(userName, "Edit", "Account")
+                        <label> </label>
+                        @Html.ActionLink("Logout", "Logout", "Account")
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Login", "Login", "Account")
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <table class="content-table">
+        <tr>
+            <td class="left-column"></td>
+            <td class="center-column">
+                <div class="body-image">
+                    <div class="trasparent-panel">
+                        <div class="container body-content">
+                            @RenderBody()
+                        </div>
+                        <hr />
+                        <footer>
+                            <p>&copy; @DateTime.Now.Year - Travel Agency (Created by Joka)</p>
+                        </footer>
+                    </div>
+                </div>
+            </td>
+            <td class="right-column"></td>
+        </tr>
+    </table>
+    @Scripts.Render("~/bundles/jquery-agency")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

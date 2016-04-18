@@ -234,3 +234,10 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+/todo.txt
+/packages
+/excluded
+/Data/TravelAgency_log.ldf
+/Data/TravelAgencyTest_log.ldf
+/TravelAgency.MVC/Project_Readme.html
+/TravelAgency.WF/Project_Readme.html

@@ -1,0 +1,2 @@
+The included database contains a predefined account. In order to log to the system utilizing this account the following login/password pair should be specified:
+Login: 'jsmith@cyberia.eu', password: 'fishAndCat'

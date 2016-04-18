@@ -1,0 +1,122 @@
+﻿@model TravelAgency.MVC.ViewModels.OffersViewModel
+@using PagedList;
+@using PagedList.Mvc;
+@using TravelAgency.DAL.DAL;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Offer List";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Index", "Offers", FormMethod.Get))
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <table class="tablle">
+        <tr>
+            <td>@Html.LabelFor(model => model.Filtering.MinDepartureDate, htmlAttributes: new { @class = "control-label col-md-12" })</td>
+            <td>@Html.EditorFor(model => model.Filtering.MinDepartureDate, new { htmlAttributes = new { @class = "form-control" } })</td>
+            <td>@Html.ValidationMessageFor(model => model.Filtering.MinDepartureDate, "", new { @class = "text-danger" })</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Filtering.MaxDepartureDate, htmlAttributes: new { @class = "control-label col-md-12" })</td>
+            <td>@Html.EditorFor(model => model.Filtering.MaxDepartureDate, new { htmlAttributes = new { @class = "form-control" } })</td>
+            <td>@Html.ValidationMessageFor(model => model.Filtering.MaxDepartureDate, "", new { @class = "text-danger" })</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Filtering.StayTimeInDays, htmlAttributes: new { @class = "control-label col-md-12" })</td>
+            <td>@Html.EditorFor(model => model.Filtering.StayTimeInDays, new { htmlAttributes = new { @class = "form-control" } })</td>
+            <td>@Html.ValidationMessageFor(model => model.Filtering.StayTimeInDays, "", new { @class = "text-danger" })</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Filtering.Country, htmlAttributes: new { @class = "control-label col-md-12" })</td>
+            <td>@Html.EditorFor(model => model.Filtering.Country, new { htmlAttributes = new { @class = "form-control" } })</td>
+            <td>@Html.ValidationMessageFor(model => model.Filtering.Country, "", new { @class = "text-danger" })</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Filtering.City, htmlAttributes: new { @class = "control-label col-md-12" })</td>
+            <td>@Html.EditorFor(model => model.Filtering.City, new { htmlAttributes = new { @class = "form-control" } })</td>
+            <td>@Html.ValidationMessageFor(model => model.Filtering.City, "", new { @class = "text-danger" })</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Filtering.ItemsOnPage, htmlAttributes: new { @class = "control-label col-md-12" })</td>
+            <td>@Html.EditorFor(model => model.Filtering.ItemsOnPage, new { htmlAttributes = new { @class = "form-control" } })</td>
+            <td>@Html.ValidationMessageFor(model => model.Filtering.ItemsOnPage, "", new { @class = "text-danger" })</td>
+        </tr>
+    </table>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Filter" class="btn btn-default" />
+        </div>
+    </div>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @TravelAgency.DAL.Util.Strings.CountryName
+        </th>
+        <th>
+            @TravelAgency.DAL.Util.Strings.City
+        </th>
+        <th>
+            @TravelAgency.DAL.Util.Strings.Departure
+        </th>
+        <th>
+            @TravelAgency.DAL.Util.Strings.Price
+        </th>
+        <th>
+            @TravelAgency.DAL.Util.Strings.DayCount
+        </th>
+        <th>
+            @TravelAgency.DAL.Util.Strings.DepartureDate
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.PagedOffers)
+    {
+        <tr @Html.Raw(Model.IsOfferReserved(item.IDOferty) ? "class=\"offer-reserved\"" : "")>
+            <td>
+                @Html.DisplayFor(modelItem => item.tPanstwa.NazwaPanstwa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Miasto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bWyjazd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mCena)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LiczbaDniTrwania)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataWyjazdu)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.IDOferty })
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+Page @(Model.PagedOffers.PageCount < Model.PagedOffers.PageNumber ? 0 : Model.PagedOffers.PageNumber) of @Model.PagedOffers.PageCount
+
+@if (Model.PagedOffers.PageCount > 1)
+{
+    @Html.PagedListPager(Model.PagedOffers, page => Url.Action("Index", new RouteValueDictionary(new Dictionary<String, object> {
+    { "page", page },
+    {"sortOrder", ViewBag.CurrentSort},
+    {"currentFilter", ViewBag.CurrentFilter},
+    {"Filtering.MinDepartureDate", Model.Filtering.MinDepartureDate},
+    {"Filtering.MaxDepartureDate", Model.Filtering.MaxDepartureDate},
+    {"Filtering.ItemsOnPage", Model.Filtering.ItemsOnPage},
+    {"Filtering.StayTimeInDays", Model.Filtering.StayTimeInDays},
+    {"Filtering.City", Model.Filtering.City},
+    {"Filtering.Country", Model.Filtering.Country}
+})))
+}
